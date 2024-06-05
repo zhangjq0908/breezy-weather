@@ -70,23 +70,23 @@ jobs:
 
       - name: Sign APKs
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        run: |
-          sign_apk() {
-            local dir=$1
-            local out_dir=$2
-            mkdir -p $out_dir
-            for apk in $dir/*.apk; do
-              local base_name=$(basename $apk .apk)
-              cp $apk $out_dir/${base_name}-signed.apk
-            done
-          }
-          sign_apk app/build/outputs/apk/freenet/release app/build/outputs/apk/freenet/signed
-          sign_apk app/build/outputs/apk/basic/release app/build/outputs/apk/basic/signed
-        env:
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-          ALIAS: ${{ secrets.ALIAS }}
-          KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/basic/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Sign APKs (freenet)
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/apk/freenet/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Check for Signed APK files
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
@@ -105,10 +105,18 @@ jobs:
             sha256=$(sha256sum $apk_name | awk '{ print $1 }')
             echo "APK_${variant^^}_SHA256=$sha256" >> $GITHUB_ENV
           }
-          prepare_apk app/build/outputs/apk/basic/signed standard
-          prepare_apk app/build/outputs/apk/freenet/signed freenet
+          prepare_apk app/build/outputs/apk/basic/release standard
+          prepare_apk app/build/outputs/apk/freenet/release freenet
           tar -czvf mapping-${{ env.VERSION_TAG }}_standard.tar.gz --directory=app/build/outputs/mapping/basicRelease/ mapping.txt
           tar -czvf mapping-${{ env.VERSION_TAG }}_freenet.tar.gz --directory=app/build/outputs/mapping/freenetRelease/ mapping.txt
+
+      - name: Upload APKs as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: APKs
+          path: |
+            app/build/outputs/apk/basic/release/app-basic-arm64-*.apk
+            app/build/outputs/apk/freenet/release/app-freenet-arm64-*.apk
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
