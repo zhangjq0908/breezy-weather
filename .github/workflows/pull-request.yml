@@ -1,18 +1,6 @@
 name: Breezy Weather Pull Request CI
 
-on:
-  pull_request:
-    branches:
-      - main
-      - dev
-    paths-ignore:
-      - ".editorconfig"
-      - "docs/*"
-      - "fastlane/*"
-      - "work/*"
-      - "**.md"
-      - "LICENSE"
-
+on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
