@@ -35,6 +35,11 @@ jobs:
             assembleFreenetRelease
             assembleBasicRelease
 
+      - name: Check for APK files
+        run: |
+          echo "Listing APK files after build:"
+          find app/build/outputs/apk -name "*.apk" -exec ls -lh {} \;
+
       - name: Add secrets to local.properties
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         run: |
@@ -83,6 +88,12 @@ jobs:
           KEY_STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
+      - name: Check for Signed APK files
+        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
+        run: |
+          echo "Listing signed APK files:"
+          find app/build/outputs/apk -name "*-signed.apk" -exec ls -lh {} \;
+
       - name: Prepare APKs with checksums, archive mapping.txt file
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
         run: |
@@ -98,17 +109,6 @@ jobs:
           prepare_apk app/build/outputs/apk/freenet/signed freenet
           tar -czvf mapping-${{ env.VERSION_TAG }}_standard.tar.gz --directory=app/build/outputs/mapping/basicRelease/ mapping.txt
           tar -czvf mapping-${{ env.VERSION_TAG }}_freenet.tar.gz --directory=app/build/outputs/mapping/freenetRelease/ mapping.txt
-
-      - name: Upload artifacts
-        if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
-        uses: actions/upload-artifact@v3
-        with:
-          name: APKs
-          path: |
-            breezy-weather-${{ env.VERSION_TAG }}_standard.apk
-            breezy-weather-${{ env.VERSION_TAG }}_freenet.apk
-            mapping-${{ env.VERSION_TAG }}_standard.tar.gz
-            mapping-${{ env.VERSION_TAG }}_freenet.tar.gz
 
       - name: Create release
         if: startsWith(github.ref, 'refs/tags/') && github.repository == 'breezy-weather/breezy-weather'
@@ -128,8 +128,8 @@ jobs:
             | Free networks | Universal   | ${{ env.APK_FREENET_SHA256 }}          |
           files: |
             breezy-weather-${{ env.VERSION_TAG }}_standard.apk
-            breezy-weather-${{ env.VERSION_TAG }}_freenet.apk
             mapping-${{ env.VERSION_TAG }}_standard.tar.gz
+            breezy-weather-${{ env.VERSION_TAG }}_freenet.apk
             mapping-${{ env.VERSION_TAG }}_freenet.tar.gz
           draft: true
           prerelease: false
