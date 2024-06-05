@@ -39,11 +39,11 @@ jobs:
         run: |
           echo "Listing APK files after build:"
           find app/build/outputs/apk -name "*.apk" -exec ls -lh {} \;
-          - name: Upload APKs as artifacts
-           uses: actions/upload-artifact@v3
-            with:
-          name: APKs
-          path: |
+      - name: Upload APKs as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+           name: APKs
+           path: |
             app/build/outputs/apk/basic/release/app-basic-arm64-*.apk
             app/build/outputs/apk/freenet/release/app-freenet-arm64-*.apk
 
