@@ -348,8 +348,8 @@
     <string name="unit_nmi_voice">海里</string>
     <string name="unit_ft">英尺</string>
     <string name="unit_ft_voice">英尺</string>
-    <string name="unit_mb">毫巴</string>
-    <string name="unit_mb_voice">毫巴</string>
+    <string name="unit_mb">兆帕</string>
+    <string name="unit_mb_voice">兆帕</string>
     <string name="unit_kpa">千帕</string>
     <string name="unit_kpa_voice">千帕</string>
     <string name="unit_hpa">百帕</string>
@@ -387,7 +387,7 @@
     <string name="widget_clock_font_sans_serif_black">无衬线体（粗）</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
+    <string name="about_contribution_叫我斯克">原始项目几何天气的开发者</string>
     <string name="settings_main_background_animation_disabled">禁用</string>
     <string name="alerts_to_follow">有新的预警，点击此处查看。</string>
     <string name="action_add_new_location">添加一个新位置</string>
