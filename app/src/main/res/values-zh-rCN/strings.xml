@@ -70,13 +70,13 @@
     <string name="precipitation_intensity_light">小雨</string>
     <string name="precipitation_intensity_heavy">大雨</string>
     <string name="ephemeris_moon_phase_new_moon">新月</string>
-    <string name="ephemeris_moon_phase_waxing_crescent">蛾眉月</string>
+    <string name="ephemeris_moon_phase_waxing_crescent">眉月</string>
     <string name="ephemeris_moon_phase_first_quarter">上弦月</string>
     <string name="ephemeris_moon_phase_waxing_gibbous">盈凸月</string>
     <string name="ephemeris_moon_phase_full_moon">满月</string>
     <string name="ephemeris_moon_phase_waning_gibbous">亏凸月</string>
     <string name="ephemeris_moon_phase_last_quarter">下弦月</string>
-    <string name="ephemeris_moon_phase_waning_crescent">残月</string>
+    <string name="ephemeris_moon_phase_waning_crescent">牙月</string>
     <string name="pollen_poaeceae">草地花粉</string>
     <string name="pollen_mold">霉菌</string>
     <string name="pollen_ambrosia">豚草花粉</string>
@@ -299,9 +299,9 @@
     <string name="weather_kind_thunderstorm">雷阵雨</string>
     <string name="weather_kind_wind">风</string>
     <!-- Air quality -->
-    <string name="air_quality_level_1">极好</string>
+    <string name="air_quality_level_1">良好</string>
     <string name="air_quality_level_1_description">空气质量对大多数人来说是理想的；可正常户外活动。</string>
-    <string name="air_quality_level_2">有利</string>
+    <string name="air_quality_level_2">普通</string>
     <string name="air_quality_level_2_description">空气质量对大多数人来说是可接受的。然而，敏感人群长期暴露可能会出现轻微或中度症状。</string>
     <string name="air_quality_level_3">差</string>
     <string name="air_quality_level_3_description">空气污染已经达到了很高水平，对敏感人群是不健康的。如果您感到呼吸困难或喉咙刺激等症状，应减少户外活动时间。</string>
@@ -348,8 +348,8 @@
     <string name="unit_nmi_voice">海里</string>
     <string name="unit_ft">英尺</string>
     <string name="unit_ft_voice">英尺</string>
-    <string name="unit_mb">兆帕</string>
-    <string name="unit_mb_voice">兆帕</string>
+    <string name="unit_mb">毫巴</string>
+    <string name="unit_mb_voice">毫巴</string>
     <string name="unit_kpa">千帕</string>
     <string name="unit_kpa_voice">千帕</string>
     <string name="unit_hpa">百帕</string>
@@ -387,7 +387,7 @@
     <string name="widget_clock_font_sans_serif_black">无衬线体（粗）</string>
     <string name="unit_fahrenheit_short">°</string>
     <string name="unit_kelvin">K</string>
-    <string name="about_contribution_WangDaYeeeeee">原始项目几何天气的开发者</string>
+    <string name="about_contribution_WangDaYeeeeee">原始项目每天天气的开发者</string>
     <string name="settings_main_background_animation_disabled">禁用</string>
     <string name="alerts_to_follow">有新的预警，点击此处查看。</string>
     <string name="action_add_new_location">添加一个新位置</string>
