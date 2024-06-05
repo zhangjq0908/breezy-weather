@@ -108,7 +108,7 @@ class AboutActivity : GeoActivity() {
 
     private val contributors: Array<ContributorItem> = arrayOf(
         ContributorItem("炊神", github = "zhangjq0908"),
-        ContributorItem("jiaowosike", github = "zhangjq0908", contribution = R.string.about_contribution_叫我斯克),
+        ContributorItem("jiaowosike", github = "zhangjq0908", contribution = R.string.about_contribution_WangDaYeeeeee),
         ContributorItem("野村山夫", contribution = R.string.about_contribution_designer)
     )
     // Please keep them ordered by the main language translated so that we can easily sort translators by % contributed
